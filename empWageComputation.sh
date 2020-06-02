@@ -3,7 +3,7 @@ echo "Welcome to EmpWage program"
 isPartTime=1;
 isFullTime=2;
 empRatePerHr=20;
-empCheck=$((RANDOM%2));
+empCheck=$(( RANDOM % 3 ));
 case $empCheck in
 	$isFullTime)
 		empHrs=8
