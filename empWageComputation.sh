@@ -1,13 +1,20 @@
 #!/bin/bash -x
 echo "Welcome to EmpWage program"
+
+# CONSTANTS FOR THE PROGRAM
 isPartTime=1;
 isFullTime=2;
-totalSalary=0;
+maxHrsInAMonth=10
 empRatePerHr=20;
 numWorkingDays=20;
-empCheck= $(( RANDOM % 3 ));
-for (( day=1; day<=$numWorkingDays; day++ ))
+
+# VARIABLES
+totalEmpHrs=0;
+totalWorkingDays=0;
+
+while [[ $totalEmpHrs -lt $maxHrsInAMonth && $totalWorkingDays -lt $numWorkingDays ]]
 do
+	((totalWorkingDays++))
 	empCheck=$(( RANDOM % 3 ));
 case $empCheck in
 	$isFullTime)
@@ -20,9 +27,9 @@ case $empCheck in
 		empHrs=0
 		;;
 esac
-salary=$(($empHrs+$empRatePerHr));
-totalSalary=$(( $totalSalary+$salary ));
+totalEmpHrs=$(( $totalEmpHrs+$empHrs ))
 done
+totalSalary=$(( $totalEmpHrs+$empRatePerHr ));
 
 
 
