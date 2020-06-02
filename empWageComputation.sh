@@ -4,7 +4,7 @@ echo "Welcome to EmployeeWage program"
 # CONSTANTS FOR THE PROGRAM
 isPartTime=1;
 isFullTime=2;
-maxHrsInAMonth=20
+maxHrsInAMonth=4;
 empRatePerHr=20;
 numWorkingDays=20;
 
@@ -27,8 +27,8 @@ esac
 echo $workHours
 }
  function calcDailyWage(){
-local workHours=$1
-wage=$(( $workHours+$empRatePerHr ))
+    local workHours=$1
+    wage=$(( $workHours+$empRatePerHr ))
 echo $wage
 }
 while [[ $totalWorkHours -lt $maxHrsInAMonth && $totalWorkingDays -lt $numWorkingDays ]]
@@ -41,6 +41,7 @@ done
 
 totalSalary="$( calcDailyWage $totalWorkHours )"
 echo "Daily wage " ${empDailyWage[@]}
+echo "All Keys " ${!empDailyWage[@]}
 
 
 
