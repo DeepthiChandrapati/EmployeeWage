@@ -1,10 +1,14 @@
 #!/bin/bash -x
 echo "Welcome to EmpWage program"
-isFullTime=1;
+isPartTime=1;
+isFullTime=2;
 empRatePerHr=20;
 empCheck=$((RANDOM%2));
 case $empCheck in
 	$isFullTime)
+		empHrs=8
+		;;
+	$isPartTime)
 		empHrs=8
 		;;
 	*)
