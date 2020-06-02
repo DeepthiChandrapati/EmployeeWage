@@ -1,5 +1,5 @@
 #!/bin/bash -x
-echo "Welcome to EmpWage program"
+echo "Welcome to EmployeeWage program"
 
 # CONSTANTS FOR THE PROGRAM
 isPartTime=1;
@@ -12,24 +12,28 @@ numWorkingDays=20;
 totalEmpHrs=0;
 totalWorkingDays=0;
 
-while [[ $totalEmpHrs -lt $maxHrsInAMonth && $totalWorkingDays -lt $numWorkingDays ]]
-do
-	((totalWorkingDays++))
-	empCheck=$(( RANDOM % 3 ));
-case $empCheck in
+function getWorkingHours(){
+    case $1 in
 	$isFullTime)
-		empHrs=8
+		workingHrs=8
 		;;
 	$isPartTime)
-		empHrs=8
+		workingHrs=8
 		;;
 	*)
-		empHrs=0
+		workingHrs=0
 		;;
 esac
-totalEmpHrs=$(( $totalEmpHrs+$empHrs ))
+echo $workingHrs
+}
+
+while [[ $totalWorkingHrs -lt $maxHrsInAMonth && $totalWorkingDays -lt $numWorkingHrs ]]
+do
+((totalWorkingDays++))
+workHrs="$( getWorkingHrs $((RANDOM%3)) )"
+totalWorkingHrs=$(( $totalWorkingHrs+$workHrs ))
 done
-totalSalary=$(( $totalEmpHrs+$empRatePerHr ));
+totalSalary=$(( $totalWorkingHrs+$empRatePerHr ));
 
 
 
